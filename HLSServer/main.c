@@ -68,7 +68,7 @@ int append_m3u8(const char *m3u8_filename, char *ts_filename)
     return 0;
 }
 
-void communicate(int socket)
+void receive_data(int socket)
 {
     const char *m3u8_filename = "test.m3u8";
     int ret = create_m3u8(m3u8_filename);
@@ -147,9 +147,9 @@ int main(int argc, const char * argv[])
         printf("Client connect failed\n");
         return -1;
     }
-    printf("Client connect success. Begin communicating.....\n");
+    printf("Client connect success.\n");
     
-    communicate(client_socket);
+    receive_data(client_socket);
     
     close(client_socket);
 
