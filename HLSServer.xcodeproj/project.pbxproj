@@ -8,26 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		343BFBE4192A4FD200A16584 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 343BFBE3192A4FD200A16584 /* main.cpp */; };
-		343BFBE6192A4FD200A16584 /* HLSServer.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 343BFBE5192A4FD200A16584 /* HLSServer.1 */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		343BFBDE192A4FD200A16584 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-				343BFBE6192A4FD200A16584 /* HLSServer.1 in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		343BFBE0192A4FD200A16584 /* HLSServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HLSServer; sourceTree = BUILT_PRODUCTS_DIR; };
 		343BFBE3192A4FD200A16584 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		343BFBE5192A4FD200A16584 /* HLSServer.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = HLSServer.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +46,6 @@
 			isa = PBXGroup;
 			children = (
 				343BFBE3192A4FD200A16584 /* main.cpp */,
-				343BFBE5192A4FD200A16584 /* HLSServer.1 */,
 			);
 			path = HLSServer;
 			sourceTree = "<group>";
@@ -75,7 +59,6 @@
 			buildPhases = (
 				343BFBDC192A4FD200A16584 /* Sources */,
 				343BFBDD192A4FD200A16584 /* Frameworks */,
-				343BFBDE192A4FD200A16584 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -197,6 +180,20 @@
 		343BFBEA192A4FD200A16584 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"$(PROJECT_DIR)/HLSServer/ffmpeg/lib",
+					"$(PROJECT_DIR)/HLSServer/lentoid",
+				);
+				OTHER_LDFLAGS = (
+					"-lfcgi",
+					"-lfcgi++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -204,6 +201,20 @@
 		343BFBEB192A4FD200A16584 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/local/include,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					/usr/local/lib,
+					"$(PROJECT_DIR)/HLSServer/ffmpeg/lib",
+					"$(PROJECT_DIR)/HLSServer/lentoid",
+				);
+				OTHER_LDFLAGS = (
+					"-lfcgi",
+					"-lfcgi++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -227,6 +238,7 @@
 				343BFBEB192A4FD200A16584 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
