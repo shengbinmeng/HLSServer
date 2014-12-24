@@ -1,6 +1,5 @@
-
 //
-//  main.m
+//  main.c
 //  HLSServer
 //
 

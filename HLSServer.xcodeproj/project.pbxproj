@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		343BFBE4192A4FD200A16584 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 343BFBE3192A4FD200A16584 /* main.cpp */; };
+		343BFBE4192A4FD200A16584 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 343BFBE3192A4FD200A16584 /* main.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		343BFBE0192A4FD200A16584 /* HLSServer */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = HLSServer; sourceTree = BUILT_PRODUCTS_DIR; };
-		343BFBE3192A4FD200A16584 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		343BFBE3192A4FD200A16584 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 		343BFBE2192A4FD200A16584 /* HLSServer */ = {
 			isa = PBXGroup;
 			children = (
-				343BFBE3192A4FD200A16584 /* main.cpp */,
+				343BFBE3192A4FD200A16584 /* main.c */,
 			);
 			path = HLSServer;
 			sourceTree = "<group>";
@@ -100,7 +100,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				343BFBE4192A4FD200A16584 /* main.cpp in Sources */,
+				343BFBE4192A4FD200A16584 /* main.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
