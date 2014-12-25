@@ -150,8 +150,6 @@ int main(int argc, const char * argv[])
             printf("Client connect failed\n");
             return -1;
         }
-        printf("Client connect success.\n");
-        
         receive_data(client_socket);
         close(client_socket);
     }
