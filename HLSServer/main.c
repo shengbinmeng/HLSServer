@@ -137,17 +137,17 @@ int main(int argc, const char * argv[])
     
     int server_socket = create_server_socket(port);
     if (server_socket < 0) {
-        printf("Cerate socket failed\n");
+        printf("Create socket failed\n");
         return -1;
     }
-    printf("Cerate server socket success. Listen at port:%d\n", port);
+    printf("Create server socket success. Listen at port:%d\n", port);
     
     int client_socket = accept_client_socket(server_socket);
     if (client_socket < 0) {
         printf("Client connect failed\n");
         return -1;
     }
-    printf("Client connect success.\n");
+    printf("Client connect success\n");
     
     receive_data(client_socket);
     
