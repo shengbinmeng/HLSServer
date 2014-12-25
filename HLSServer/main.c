@@ -39,7 +39,7 @@ int accept_client_socket(int server_socket)
     socklen_t len = sizeof(addr);
     int client_socket = accept(server_socket, (struct sockaddr *)&addr, &len);
     char *ip_address = inet_ntoa(addr.sin_addr);
-    printf("accept--->%s, %d\n", ip_address, addr.sin_port);
+    printf("Client from %s, %d\n", ip_address, addr.sin_port);
     return client_socket;
 }
 
@@ -142,17 +142,20 @@ int main(int argc, const char * argv[])
     }
     printf("Create server socket success. Listen at port:%d\n", port);
     
-    int client_socket = accept_client_socket(server_socket);
-    if (client_socket < 0) {
-        printf("Client connect failed\n");
-        return -1;
+    while (1) {
+        // Keep waiting for connection. Never exit unless error happens.
+        
+        int client_socket = accept_client_socket(server_socket);
+        if (client_socket < 0) {
+            printf("Client connect failed\n");
+            return -1;
+        }
+        printf("Client connect success.\n");
+        
+        receive_data(client_socket);
+        close(client_socket);
     }
-    printf("Client connect success\n");
     
-    receive_data(client_socket);
-    
-    close(client_socket);
-
     return 0;
 }
 
