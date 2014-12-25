@@ -89,8 +89,8 @@ void receive_data(int socket)
             break;
         }
         if (file_len == 0) {
-            // This file is zero length, so we continue to next
-            continue;
+            // This file is zero length, something must be wrong
+            break;
         }
         sprintf(ts_filename, "%srecord_%d.ts", PREFIX, file_count);
         ts_file = fopen(ts_filename, "w");
