@@ -180,8 +180,8 @@
 		343BFBEA192A4FD200A16584 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				OTHER_LDFLAGS = (
 					"-lfcgi",
 					"-lfcgi++",
@@ -193,8 +193,8 @@
 		343BFBEB192A4FD200A16584 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				HEADER_SEARCH_PATHS = /usr/local/include;
-				LIBRARY_SEARCH_PATHS = /usr/local/lib;
+				HEADER_SEARCH_PATHS = /opt/local/include;
+				LIBRARY_SEARCH_PATHS = /opt/local/lib;
 				OTHER_LDFLAGS = (
 					"-lfcgi",
 					"-lfcgi++",
