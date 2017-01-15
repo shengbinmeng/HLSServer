@@ -4,14 +4,14 @@
 //
 
 
-#import <stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
-#import <stdlib.h>
-#import <string.h>
-#import <sys/types.h>
-#import <sys/socket.h>
-#import <netinet/in.h>
-#import <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 #define PREFIX ""
 #define BUFFER_SIZE 1024
@@ -25,9 +25,11 @@ int create_server_socket(short port)
     addr.sin_port = htons(port);
     addr.sin_addr.s_addr = INADDR_ANY;
     if (bind(server_socket, (struct sockaddr *)&addr, sizeof(addr)) != 0) {
+        perror("Error when binding socket");
         return -1;
     }
     if (listen(server_socket, 100) != 0) {
+        perror("Error when listening socket");
         return -1;
     }
     return server_socket;
@@ -73,7 +75,7 @@ void receive_data(int socket)
     const char *m3u8_filename = "test.m3u8";
     int ret = create_m3u8(m3u8_filename);
     if (ret < 0) {
-        fprintf(stderr, "Create m3u8 file failed\n");
+        printf("Create m3u8 file failed\n");
         return;
     }
     char buf[BUFFER_SIZE];
@@ -89,13 +91,14 @@ void receive_data(int socket)
             break;
         }
         if (file_len == 0) {
-            // This file is zero length, something must be wrong
+            // This file is zero length, something must be wrong.
+            printf("Received data of zero length\n");
             break;
         }
         sprintf(ts_filename, "%srecord_%d.ts", PREFIX, file_count);
         ts_file = fopen(ts_filename, "w");
         if (ts_file == NULL) {
-            fprintf(stderr, "Open TS file failed\n");
+            printf("Open TS file failed\n");
             break;
         }
         bzero(buf, BUFFER_SIZE);
@@ -119,7 +122,7 @@ void receive_data(int socket)
         printf("TS file %s is received\n", ts_filename);
         ret = append_m3u8(m3u8_filename, ts_filename);
         if (ret < 0) {
-            fprintf(stderr, "Append m3u8 file failed\n");
+            printf("Append m3u8 file failed\n");
             break;
         }
 
@@ -129,18 +132,21 @@ void receive_data(int socket)
 
 int main(int argc, const char * argv[])
 {
-    // Use port 9898 if not specified
+    // Use port 9898 if not specified.
     short port = 9898;
     if (argc > 1) {
-        port = (short)atoi(argv[1]);
+    	port = (short)atoi(argv[1]);
+    } else {
+		printf("Usage: %s [port]\n", argv[0]);
+        printf("Port not specified, default to %d\n", port);
     }
     
     int server_socket = create_server_socket(port);
     if (server_socket < 0) {
-        printf("Create socket failed\n");
-        return -1;
+        printf("Create socket failed at port %d\n", port);
+        exit(1);
     }
-    printf("Create server socket success. Listen at port:%d\n", port);
+    printf("Create server socket success. Listen at port %d\n", port);
     
     while (1) {
         // Keep waiting for connection. Never exit unless error happens.
@@ -148,7 +154,7 @@ int main(int argc, const char * argv[])
         int client_socket = accept_client_socket(server_socket);
         if (client_socket < 0) {
             printf("Client connect failed\n");
-            return -1;
+            exit(1);
         }
         receive_data(client_socket);
         close(client_socket);
